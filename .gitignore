@@ -142,8 +142,4 @@ dmypy.json
 # profiling data
 .prof
 
-Datos.txt
-main.py
-Menu.py
-Vista.py
 # End of https://www.toptal.com/developers/gitignore/api/python
