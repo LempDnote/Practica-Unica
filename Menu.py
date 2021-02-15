@@ -1,3 +1,6 @@
+import json
+import webbrowser
+
 from Funciones import Funciones
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
@@ -33,7 +36,7 @@ class Menuinicial():
             if opcion == 4:
                 self.Todas(lista)
             if opcion == 5:
-                print("En proceso")
+                self.Todas_Archivo(lista)
             if opcion == 6:
                 print("Adios!")
                 bandera = False
@@ -45,4 +48,14 @@ class Menuinicial():
         for i in lista:
             print(i[1:])
     def Todas_Archivo(self,lista):
-        return 0
+        cadena = ""
+        Dom = []
+        lista2 = []
+        for i in lista:
+            lista2.append(i[1:])
+        for i in range(len(lista2)):
+            Dom.append({"Listado":lista2[i]})
+        with open('Plantillas/archivo.json','w') as f:
+            json.dump(Dom,f,indent=2)
+        webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s").open(
+            "http://localhost:63342/Practica%20Unica/Plantillas/index.html?_ijt=md08kv50qg9akhg2rev2fl8kbt")

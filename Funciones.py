@@ -3,7 +3,6 @@ class Funciones():
 
     def open(self,archivo):
         archivo = open(archivo,"r")
-        print("entro")
         listado = []
         for lineas in archivo.readlines():
             self.cadena(self.espacios(lineas),listado)
@@ -11,7 +10,11 @@ class Funciones():
         return listado
     def cadena(self,string,listado):
         #Primer idicador "="
-        nombre,cadena = string.split("=")
+        try:
+            nombre,cadena = string.split("=")
+        except:
+            nombre = ""
+            cadena = ""
         numerosC = ""
         funciones = ""
         encontrar = ""
@@ -47,9 +50,6 @@ class Funciones():
                 cadena.remove(i)
         string = "".join(cadena)
         return string
-    def archivo(self,nombre,funcion,lista):
-        cadena = nombre+":"+" "+funcion+"="+"".join(lista)
-        print(cadena)
     def ordenar(self,listado):
         for i in range(len(listado)-1):
             for j in range(i+1,len(listado)):
