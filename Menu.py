@@ -1,6 +1,5 @@
 import json
 import webbrowser
-
 from Funciones import Funciones
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename

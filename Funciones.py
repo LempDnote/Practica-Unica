@@ -30,7 +30,7 @@ class Funciones():
         Lnumeros2 = numerosC.split(",")
         for i in range(len(funciones)):
             if funciones[i].upper() == "O":
-                Lnumeros = self.ordenar(Lnumeros)
+                Lnumeros = self.ordenar(self.iteracion(Lnumeros))
                 completo = "O"+nombre+":"+"ORDENADOS = "+",".join(Lnumeros)
                 listado.append(completo)
             if funciones[i].upper() == "B":
@@ -41,31 +41,41 @@ class Funciones():
                         cadencia += Bcadena[j]
                 numeros = cadencia.split(",")
                 encontrar = self.buscar(numeros,Lnumeros2)
-                completo = "B"+nombre+":"+",".join(Lnumeros2)+" BUSQUEDA POSICIONES="+encontrar
+                completo = "B"+nombre+":"+",".join(Lnumeros2)+" BUSQUEDA "+cadencia+" = "+encontrar
                 listado.append(completo)
-    def espacios(self,string):
-        cadena = list(string)
-        for i in cadena:
-            if i == " ":
-                cadena.remove(i)
-        string = "".join(cadena)
+    def espacios(self,listado):
+        string = ""
+        for i in range(len(listado)):
+            if listado[i] != " ":
+                string += listado[i]
         return string
     def ordenar(self,listado):
         for i in range(len(listado)-1):
             for j in range(i+1,len(listado)):
-                if int(listado[i]) > int(listado[j]):
+                if listado[i] > listado[j]:
                     temp = listado[i]
                     listado[i] = listado[j]
                     listado[j] = temp
-        return listado
+
+        return self.iteracion2(listado)
     def buscar(self,listado1,listado2):
         encontrado = ""
         numeros = []
         for i in listado1:
             for j in range(len(listado2)):
-                if int(listado2[j]) == int(i):
-                    numeros.append(str(j+1))
+                if listado2[j].isdigit:
+                    if listado2[j]== i:
+                        numeros.append(str(j+1))
         encontrado = ",".join(numeros)
         if encontrado == "":
             encontrado = "NO ENCONTRADO"
         return encontrado
+    def iteracion(self,cadena):
+        for i in range(len(cadena)):
+            cadena[i] = int(cadena[i])
+        return cadena
+    def iteracion2(self,numeros):
+        for i in range(len(numeros)):
+            numeros[i] = str(numeros[i])
+        return numeros
+
